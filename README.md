@@ -1,7 +1,7 @@
 # The Mulk Data Model
 
 The **Mul**ti-**k**ey data model is an approach for storing data.
-This is sort-of a combination of a key-value data model which looks like a graph.
+This is sort-of a key-value data model combined with a graph.
 The intention of this is to be used as a basis for a database which can have very flexible needs.
 
 ## Introduction
