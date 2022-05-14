@@ -29,7 +29,7 @@ The keys are _vectors_ (e.g. consists of multiple items) and you logically group
 * In the relational model (e.g. SQL) you have a native concept of "relation" and "attribute" (or "table" and "columns" as it's known in SQL).
   These are not special in any way in Mulk, but you can accomplish the same thing by using the key space.
 
-In the example below we use the hierarchical property to represent "columns" in a SQL database, but we are not actually limited to that.
+In the example above we use the hierarchical property to represent "columns" in a SQL database, but we are not actually limited to that.
 We can do something which you can't do at all in an SQL database;
 we can structure the data in a purely hierarchical form:
 
