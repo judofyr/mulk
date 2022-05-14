@@ -66,7 +66,9 @@ The critical part is that these links are _transparent_.
 You never actually need to think about that these are links.
 E.g. `(department, 1, employee, 1, name)` will contain `"Bob"`,
 the exact same data as what is stored in `(employee, 1, name)`.
-You're building up your key space as a graph.
+If you ask for all the data under `(department, 1)` you will also get all of the employees.
+We've placed the _same_ data in _multiple_ places.
+Conceptually you should think that the value `"Bob"` actually has multiple keys attached to it.
 
 Links can be recursive, and links can also point to "nothing".
 A database using the Mulk data model might want to add support for extra constraints (e.g. "only allow links to other keys which exists" or "disallow deletes to keys which are linked to elsewhere"),
