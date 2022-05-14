@@ -88,6 +88,18 @@ Notice how there's not a separate concept of "index" in Mulk.
 Instead you just use the key space to link up your data.
 In your database you might want to configure this part of the key space specially (notably: you want to ensure you can do range queries), 
 
+## Usage
+
+The intention is for the Mulk data model to be implemented natively in a database.
+When using this database you should think about your data in terms of the key space, but there should be tooling to simplify the maintenance.
+
+* We expect there to be support for _transactions_ so that you can maintain different parts of the key space in a consistent manner.
+* You shouldn't need to maintain the secondary indexes yourself, but you would use a library (or maybe a native command in the database?) to keep these in sync.
+* The data structures _behind_ the key space should be configurable.
+  Just like how PostgreSQL has different types of indexes (B-tree, GIN, GIST) or Redis has different data structures (hashes, sets, lists) you should be able to optimize the physical representation.
+  Preferably this should also be possible to change on-the-fly.
+* Support for _constraints_, whether they are "required fields" or "avoid dangling references", makes sense in _any_ database regardless of data model.
+
 ## Advantages
 
 ### Hierarchical structures makes sense as well!
