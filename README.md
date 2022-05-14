@@ -101,6 +101,8 @@ When using this database you should think about your data in terms of the key sp
   Just like how PostgreSQL has different types of indexes (B-tree, GIN, GIST) or Redis has different data structures (hashes, sets, lists) you should be able to optimize the physical representation.
   Preferably this should also be possible to change on-the-fly.
 * Support for _constraints_, whether they are "required fields" or "avoid dangling references", makes sense in _any_ database regardless of data model.
+* It's clear that the database can't store the data naively as records of "key + value".
+  We want to be able use long, deeply nested keys so there has to be _some_ optimization which takes advantage of the shared prefix.
 
 There will be some _fundamental operations_ you can do to access your data:
 Inserting values/links, deleting data, fetching a single value, fetching a whole subset of the key space, access what links point to.
