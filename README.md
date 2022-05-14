@@ -110,6 +110,30 @@ but let's highlight some use cases:
   Sharding is _all_ about hierarchy: You pick a dimension to shard on, and you want to make sure that every query only accesses data inside a single shard.
   Mulk allows you to put your sharding dimension directly inside your key and it becomes evident which shard you'll access.
 
+### Transparent performance characteristics
+
+SQL databases have a quite powerful feature:
+When designing your data model you shouldn't have to worry about _how_ you're going to access your data as you can create separate _indexes_ later on.
+
+This is however not _actually_ true in practice.
+There's different ways of representing the "same" data model and your choice will have performance impact later on.
+The simplest example is maybe a _nullable field_.
+You can model this either by having nullable column on the main table, or you can create a separate table where the field is a non-nullable column and can be joined into the main table.
+These have widely different performance characteristics regardless of how many indexes you add.
+
+Mulk has a different philosophy, slightly inspired by NoSQL databases:
+We want you to think about how the data is accessed and we want you to be aware of how it's _physically_ structured.
+On a day-to-day basis you may use a query language which hides details, but at a fundamental level we believe that the _only_ way to build performant and scalable databases is to be aware of what's going on behind the scenes.
+We _want_ you to be able to poke behind and understand how your data is being stored.
+
+We also want our data model to be flexible enough so that we can use different data structures behind the scenes.
+A database could implement the Mulk data model such that everything stored under `(data, ?)` is stored as a literal hash map (instead of e.g. a B-tree).
+This works naturally in this data model.
+The only restriction is that you wouldn't be able to do range-queries _inside_ this part of a key space, but other than that it would work great.
+You could even have nested values _under_ this hash map as well.
+A SQL database _could_ provide a functionality like `CREATE HASHMAP TABLE data(key TEXT, value TEXT)`
+so that `SELECT value FROM data WHERE key = ?` would be a hash map lookup, but it would behave like a very foreign object compared to your rest of your database.
+
 ### … over FoundationDB
 
 [FoundationDB](https://www.foundationdb.org/) encourages storing data in a similar way as described here, but they have a much simpler data model.
