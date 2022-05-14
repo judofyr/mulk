@@ -100,6 +100,12 @@ When using this database you should think about your data in terms of the key sp
   Preferably this should also be possible to change on-the-fly.
 * Support for _constraints_, whether they are "required fields" or "avoid dangling references", makes sense in _any_ database regardless of data model.
 
+There will be some _fundamental operations_ you can do to access your data:
+Inserting values/links, deleting data, fetching a single value, fetching a whole subset of the key space, access what links point to.
+In addition, there should be some higher-level languages (like SQL) which simplifies common operations.
+Even though you use abstractions on top to simplify querying and mutations, you should always be able to understand how your data access is tied into your data model.
+Mulk is not intended as an implementation detail; it's the actual model of your data!
+
 ## Advantages
 
 ### Hierarchical structures makes sense as well!
