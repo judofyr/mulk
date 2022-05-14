@@ -68,6 +68,10 @@ E.g. `(department, 1, employee, 1, name)` will contain `"Bob"`,
 the exact same data as what is stored in `(employee, 1, name)`.
 You're building up your key space as a graph.
 
+Links can be recursive, and links can also point to "nothing".
+A database using the Mulk data model might want to add support for extra constraints (e.g. "only allow links to other keys which exists" or "disallow deletes to keys which are linked to elsewhere"),
+but these are separate from the data model itself.
+
 ### Multi-key for indexes
 
 Imagine that you want to implement search for all the employees and department names/locations.
