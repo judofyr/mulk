@@ -84,6 +84,10 @@ Using the multi-key support you can create a new part of the key space that link
 * (search, "Sales") => (department, 1, name)
 * (search, "Sydney") => (department, 1, location)
 
+Notice how there's not a separate concept of "index" in Mulk.
+Instead you just use the key space to link up your data.
+In your database you might want to configure this part of the key space specially (notably: you want to ensure you can do range queries), 
+
 ## Advantages
 
 ### Hierarchical structures makes sense as well!
